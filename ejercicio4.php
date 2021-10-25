@@ -35,6 +35,7 @@
 
                
                 echo "</tr>";
+            //devuelve un resultado con indice asociativo
             while($fila=mysqli_fetch_assoc($result)){
                 echo "<tr>";
                 echo "<td>$fila[id]</td>";
@@ -72,6 +73,7 @@
 
                
                 echo "</tr>";
+                //devuelve un objeto
             while($fila=mysqli_fetch_object($result)){
                 echo "<tr>";
                 echo "<td>$fila->id</td>";
@@ -112,6 +114,7 @@
 
                
                 echo "</tr>";
+            //devuelve un resultado con indice asociativo y ademas con uno numerico
             while($fila=mysqli_fetch_array($result)){
                 echo "<tr>";
                 echo "<td>$fila[0]</td>";
@@ -152,6 +155,8 @@
 
                
                 echo "</tr>";
+
+            //devuelve un resultado con un indice numerico
             while($fila=mysqli_fetch_row($result)){
                 echo "<tr>";
                 echo "<td>$fila[0]</td>";
