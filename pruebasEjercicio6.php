@@ -31,35 +31,45 @@
         $resultadoCrearVuelo = creaVuelo($mysqli,$origen,$destino,$fecha,$companya,$modeloAvion);
         if ($resultadoCrearVuelo==true) {
             echo "El vuelo se ha creado correctamente";
+            echo "<br>";
+
         }else{
             echo "Hubo un error en la creacion del vuelo";
+            echo "<br>";
         }
         
         $resultadoModificarDestino = modificarDestino($mysqli,$destino,$id1);
         if ($resultadoCrearVuelo==true) {
             echo "El vuelo se ha modicado correctamente";
+            echo "<br>";
         }else{
             echo "Hubo un error en la modificacion del vuelo";
+            echo "<br>";
         }
 
         $resultadoModificarCompanya = modificarCompanya($mysqli,$companya,$id2);
         if ($resultadoCrearVuelo==true) {
             echo "El vuelo se ha modicado correctamente";
+            echo "<br>";
         }else{
             echo "Hubo un error en la modificacion del vuelo";
+            echo "<br>";
         }
 
         $resultadoEliminarVuelo   = eliminarVuelo($mysqli,$id3);
         if ($resultadoCrearVuelo==true) {
             echo "El vuelo se ha eliminado correctamente";
+            echo "<br>";
         }else{
             echo "Hubo un error en la eliminacion del vuelo";
+            echo "<br>";
         }
 
-        $resultadoExtraerVuelos=[];
+        
         $resultadoExtraerVuelos = extraerVuelos($mysqli);
         if($resultadoExtraerVuelos==false){
             echo "Error al mostrar los datos";
+            echo "<br>";
         }else{
             echo "<table>";
                 echo "<td>id</td>";
@@ -72,7 +82,7 @@
 
            
             echo "</tr>";
-            foreach($resultadoExtraerVuelos as $vuelo){
+            while ($vuelo = mysqli_fetch_assoc($resultadoExtraerVuelos)){
                 echo "<tr>";
                 echo "<td>$vuelo[id]</td>";
                 echo "<td>$vuelo[Origen]</td>";
@@ -87,7 +97,7 @@
 
         }
 
-
+        mysqli_close($mysqli);
 
     ?>
 </body>
