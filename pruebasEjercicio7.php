@@ -8,15 +8,15 @@
 </head>
 <body>
     <?php
-        include "ejercicio6.inc.php";
-        $origen="Tenerife";
-        $destino="Sevilla";
+        include "ejercicio7.inc.php";
+        $origen="Sevilla";
+        $destino="Tenerife";
         $fecha="2021-10-22 14:02:29";
         $companya="AirEuropa";
         $modeloAvion="A320";
         $id1=7;
         $id2=5;
-        $id3=1;
+        $id3=16;
 
         $mysqli=creaConexion();
         if ($mysqli==false){
