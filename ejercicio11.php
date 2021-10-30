@@ -17,8 +17,7 @@
             $consulta->bindParam(4,$direccion);
             $consulta->bindParam(5,$telefono);
             $consulta->execute();
-            $last_id = $consulta->lastInsertId();
-            return $last_id;
+            return $conexion->lastInsertId();
         } catch (PDOException $e) {
             return false;
         }
@@ -33,6 +32,43 @@
         } catch (PDOException $e) {
             return false;
         }
+    }
+
+    function extraeTuristas($conexion){
+        try {    
+            /*$sql="SELECT * FROM turista"; 
+            return $conexion->query($sql);*/
+            $consulta =$conexion->prepare("SELECT * FROM turista"); 
+            $consulta->execute(); 
+            $array = [];
+            while($fila = $consulta->fetch(PDO::FETCH_BOTH)){
+                $array[]=$fila;
+            }
+            return $array;
+            
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    function actualizaTurista($conexion, $id, $direccion, $telefono){
+        try{
+            $consulta =$conexion->prepare("UPDATE turista SET direccion=:direccion, telefono=:telefono WHERE id=:id"); 
+            $parametros = array(":direccion"=>$direccion, ":telefono"=>$telefono, ":id"=>$id);
+            return $consulta->execute($parametros);
+        } catch(PDOException $e){
+            return false;
+        } 
+    }
+
+    function eliminaTurista($conexion, $id){
+        try{
+            $consulta =$conexion->prepare("DELETE FROM turista WHERE id=:id"); 
+            $parametros = array(":id"=>$id);
+            return $consulta->execute($parametros);
+        } catch(PDOException $e){
+            return false;
+        } 
     }
 
 ?>
